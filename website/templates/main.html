@@ -75,7 +75,16 @@
                   <div class="menu_main">
                      <div class="custome_menu">
                         <ul>
+                           {% if user.is_authenticated %}
                            <li class="active"><a href="index.html">Home</a></li>
+                           <li><a href="service.html">Services</a></li>
+                           <li><a href="about.html">About</a></li>
+                           <li><a href="blog.html">Blog</a></li>
+                           <li><a href="shop.html">Artisans</a></li>
+                           <li><a href="/sign-up">Profile</a></li>
+                           <li><a href="/logout">Logout</a></li>
+                           {% else %}
+                           <li class="active"><a href="/">Home</a></li>
                            <li><a href="service.html">Services</a></li>
                            <li><a href="about.html">About</a></li>
                            <li><a href="blog.html">Blog</a></li>
@@ -86,12 +95,30 @@
                      <div class="login_menu">
                         <ul>
                            <li><a href="/login">Login</a></li>
+                           {% endif %}
                            <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                         </ul>
                      </div>
                   </div>
                </div>
                {% endblock %}
+               {% with messages = get_flashed_messages(with_categories=true) %} {% if
+                  messages %} {% for category, message in messages %} {% if category ==
+                  'error' %}
+                  <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  {% else %}
+                  <div class="alert alert-success alter-dismissable fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  {% endif %} {% endfor %} {% endif %} {% endwith %}
                {% block body %} {% endblock %}
                {% block footer %}
             <!-- footer section start -->

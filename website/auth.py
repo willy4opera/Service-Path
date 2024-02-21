@@ -3,7 +3,18 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db   ##means from __init__.py import db
 from flask_login import login_user, login_required, logout_user, current_user
+import uuid as uuid
+from werkzeug.utils import secure_filename
+from . import save_profile
 
+
+
+
+
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 auth = Blueprint('auth', __name__)
 
@@ -25,7 +36,7 @@ def login():
         else:
             flash('Email does not exist.', category='error')
 
-    return render_template("login1.html", user=current_user)
+    return render_template("login.html", user=current_user)
 
 
 @auth.route('/logout')
@@ -39,13 +50,23 @@ def logout():
 def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
-        first_name = request.form.get('firstName')
+        first_name = request.form.get('FName')
+        last_name = request.form.get('LName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
+        phone_num = request.form.get('Phone_Number')
+        address = request.form.get('address')
+        dateofbirth = request.form.get('DOD')
+
+        file = request.files['profile_pic']
+        pic_name = save_profile(file)
+
 
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists.', category='error')
+
+        
         elif len(email) < 4:
             flash('Email must be greater than 3 characters.', category='error')
         elif len(first_name) < 2:
@@ -55,11 +76,16 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method='pbkdf2:sha1', salt_length=8))
+            new_user = User(email=email, dateofbirth=dateofbirth, address=address, phone_num=phone_num,
+                            last_name=last_name, profile_pic=pic_name, first_name=first_name, password=generate_password_hash(password1, method='pbkdf2:sha1', salt_length=8))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            flash('Account created!', category='success')
+            flash('Account created successfully!', category='success')
             return redirect(url_for('views.home'))
+    
+    
+
+       
 
     return render_template("register.html", user=current_user)

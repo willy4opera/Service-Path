@@ -1,4 +1,11 @@
 flask
-Flask-SQLAlchemy
-flask-login
 gunicorn
+flask-login
+Flask-Migrate
+Flask-SQLAlchemy
+flask-loginFlask-Migrate
+
+
+
+
+

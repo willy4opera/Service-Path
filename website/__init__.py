@@ -57,6 +57,7 @@ def save_profile(picture):
     
     if picture.save(picture_path):
         flash('Picture saved successfully', category='success')
-        return picture_fn
+    
+    return picture_fn
 
 

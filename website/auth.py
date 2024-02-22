@@ -90,3 +90,11 @@ def sign_up():
        
 
     return render_template("register.html", user=current_user)
+
+@auth.route('/account', methods=['GET', 'POST'] )
+@login_required
+def user_account():
+    id = current_user.id
+
+    return render_template('account.html', user=current_user)
+

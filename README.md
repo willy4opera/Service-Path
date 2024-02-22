@@ -1,4 +1,9 @@
-# Flask Web App Tutorial
+# TITLE: SERVICE PATH APPLICATION
+# PROJECT AUTHOR: ODIONYE OBIAJULU WILLIAMS
+
+#            ABOUT THIS PROJECT
+
+This project was influenced by a need to have a bring together artisans and professional who are dedicated and committed to their craft. With a touch of a social networking, the service path Application will bring artisans closer to high paying client whose major gaol or pross who can do the job just exactly the way they want it.
 
 ## Setup & Installation
 

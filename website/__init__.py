@@ -1,3 +1,5 @@
+# Here we import all the packages that are required 
+# By all the functions writtten in this module
 from flask import Flask, flash
 from flask_sqlalchemy import SQLAlchemy
 from os import path
@@ -6,7 +8,8 @@ from flask_migrate import Migrate
 import os
 import secrets
 
-
+# Here, we initialize or ORM
+# The SQLAlchemy
 db = SQLAlchemy()
 DB_NAME = "database.db"
 

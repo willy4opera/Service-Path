@@ -1,5 +1,7 @@
 {% extends "main.html" %} {% block title %}SIGN UP{% endblock %} {% block body %}
+
 <!-- contact section start -->
+                
 <div class="contact_section layout_padding">
     <div class="container">
        <div class="contact_section_2">
@@ -7,22 +9,25 @@
              <div class="col-md-12">
                 <h1 class="contact_taital">CREATE ACCOUNT</h1>
                 <form action="" method="post" enctype="multipart/form-data">
+ 
                    <div class="mail_section_1">
 
+ <!--Avatar-->
+ <div class="container">
+   <div class="d-flex justify-content-center mb-4">
+       <img id="selectedAvatar" src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+       class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;" alt="example placeholder" />
+   </div>
+   <div class="d-flex justify-content-center">
+       <div class="btn btn-primary btn-rounded">
+           <label class="form-label text-white m-1" for="customFile2">Choose file</label>
+           <input type="file" class="form-control d-none" id="customFile2" onchange="displaySelectedImage(event, 'selectedAvatar')" name="profile_pic" />
+       </div>
+   </div>
+</div>
 
-<!--Avatar-->
-<div>
-<div class="d-flex justify-content-center mb-4">
-<img id="selectedAvatar" src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
-class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;" alt="example placeholder" />
-</div>
-<div class="d-flex justify-content-center">
-<div class="btn btn-primary btn-rounded">
-<label class="form-label text-white m-1" for="customFile2">Choose file</label>
-<input type="file" class="form-control d-none" id="customFile2" onchange="displaySelectedImage(event, 'selectedAvatar')" name="profile_pic"/>
-</div>
-</div>
-</div>
+<!--Avatar End-->
+
 <input type="text" class="mail_text" placeholder="johnD@mail.com" name="email">
 <input type="password" class="mail_text" placeholder="Password" name="password1">
 <input type="password" class="mail_text" placeholder="Repeat Password" name="password2">

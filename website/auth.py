@@ -68,7 +68,7 @@ def sign_up():
             flash('Email already exists.', category='error')
 
         
-        elif file not in request.files['profile_pic']:
+        elif request.files['profile_pic'].filename == '':
             flash('Please upload profile Picture', category='error')
         elif len(email) < 4:
             flash('Email must be greater than 3 characters.', category='error')

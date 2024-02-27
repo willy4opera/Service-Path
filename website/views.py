@@ -13,6 +13,12 @@ def home():
 
     return render_template("index.html", user=current_user)
 
+@views.route('/services', methods=['GET', 'POST'])
+def services():
+
+
+    return render_template("services.html", user=current_user)
+
 
 @views.route('/delete_service', methods=['POST'])
 def delete_service():  

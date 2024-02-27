@@ -11,7 +11,7 @@ from . import save_profile
 
 
 
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'jpg', 'jpeg', 'gif'}
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -59,8 +59,19 @@ def sign_up():
         address = request.form.get('address')
         dateofbirth = request.form.get('DOD')
 
-        file = request.files['profile_pic']
-        pic_name = save_profile(file)
+
+        if 'profile_pic' not in request.files:
+            flash('No file part', category='error')
+            return redirect(request.url)
+        profile_pic = request.files['profile_pic']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if profile_pic.filename == '':
+            flash('No selected file', category='error') 
+            return redirect(request.url)
+        
+        pic_name = save_profile(profile_pic)
+
 
 
         user = User.query.filter_by(email=email).first()

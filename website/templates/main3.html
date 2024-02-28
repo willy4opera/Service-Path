@@ -15,7 +15,15 @@
       <meta name="author" content="">
       <!-- bootstrap css -->
       <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main4.css')}}">
+      <style>
+            .sticky {
+            position: fixed;
+            top: 0;
+            z-index: 99;
+            width: 100%
+            }
 
+      </style>
       <!-- style css -->
 
       <!-- Responsive-->
@@ -34,7 +42,8 @@
  {% block content %}
     {% block header %}
       <!-- header section start -->
-      <div class="container-fluid1">
+      <div id="thHeader">
+      <div class="container-fluid1" >
          <div class="header_section1">
             <div class="container1">
                <nav class="navbar1 navbar-light bg-light justify-content-between">
@@ -70,7 +79,7 @@
          </div>
       </div>
       <!-- header section end -->
-     
+      </div>
       <!-- layout main section start -->
       <div class="container-fluid1">
          <div class="layout_main1">
@@ -177,6 +186,20 @@
 <script type="text/javascript">
 	
 </script>
+<script>
+   window.onscroll = function() {stickheader()};
+   
+   var header = document.getElementById("thHeader");
+   var sticky = header.offsetTop;
+   
+   function stickheader() {
+     if (window.pageYOffset > sticky) {
+       header.classList.add("sticky");
+     } else {
+       header.classList.remove("sticky");
+     }
+   }
+   </script>
 {% include 'servicejs.html' %}
       {% endblock %}
       <!-- End javascript Block-->
